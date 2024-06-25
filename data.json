@@ -1,0 +1,14 @@
+[
+    {
+        "link": "https://example.com/page1",
+        "tags": ["tag1", "tag2", "tag3"]
+    },
+    {
+        "link": "https://example.com/page2",
+        "tags": ["tag2", "tag4", "tag5"]
+    },
+    {
+        "link": "https://example.com/page3",
+        "tags": ["tag1", "tag5", "tag6"]
+    }
+]

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .search-container {
+            margin-bottom: 20px;
+        }
+        .results {
+            margin-top: 20px;
+        }
+        .result-item {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="search-container">
+        <input type="text" id="searchBox" placeholder="Enter search term">
+        <button onclick="search()">Search</button>
+    </div>
+
+    <div class="results" id="results"></div>
+
+    <script>
+        async function search() {
+            const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+            const resultsContainer = document.getElementById('results');
+            resultsContainer.innerHTML = '';
+
+            // Fetch the JSON data
+            const response = await fetch('data.json');
+            const data = await response.json();
+
+            // Filter the data based on the search term
+            const results = data.filter(item => 
+                item.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+            );
+
+            // Display the results
+            results.forEach(item => {
+                const resultItem = document.createElement('div');
+                resultItem.classList.add('result-item');
+                resultItem.innerHTML = `<a href="${item.link}">${item.link}</a>`;
+                resultsContainer.appendChild(resultItem);
+            });
+        }
+    </script>
+
+</body>
+</html>
